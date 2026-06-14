@@ -1,0 +1,107 @@
+[
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A05",
+    "modelCode": "SM-A055F",
+    "aliases": ["SM-A055F/DSN", "SM-A055M", "Galaxy A05"],
+    "lcdPartNumber": "SM-A055F Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A05s",
+    "modelCode": "SM-A057F",
+    "aliases": ["SM-A057M", "SM-A057F/DSN", "Galaxy A05s"],
+    "lcdPartNumber": "SM-A057F Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A14",
+    "modelCode": "SM-A145F",
+    "aliases": ["SM-A145M", "SM-A145P", "SM-A145R", "Galaxy A14"],
+    "lcdPartNumber": "SM-A145F Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A15",
+    "modelCode": "SM-A155F",
+    "aliases": ["SM-A155M", "SM-A155F/DSN", "Galaxy A15"],
+    "lcdPartNumber": "SM-A155F AMOLED Assembly w/ Frame"
+  },
+  {
+    "brand": "Oppo",
+    "model": "A18",
+    "modelCode": "CPH2565",
+    "aliases": ["Oppo A18"],
+    "lcdPartNumber": "CPH2565 Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Oppo",
+    "model": "A38",
+    "modelCode": "CPH2579",
+    "aliases": ["Oppo A38"],
+    "lcdPartNumber": "CPH2579 Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Vivo",
+    "model": "Y17s",
+    "modelCode": "V2310",
+    "aliases": ["Vivo Y17s"],
+    "lcdPartNumber": "V2310 Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Vivo",
+    "model": "Y02s",
+    "modelCode": "V2218",
+    "aliases": ["Vivo Y02s"],
+    "lcdPartNumber": "V2218 LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Realme",
+    "model": "C53",
+    "modelCode": "RMX3760",
+    "aliases": ["Realme C53"],
+    "lcdPartNumber": "RMX3760 Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Realme",
+    "model": "Note 50",
+    "modelCode": "RMX3834",
+    "aliases": ["Realme Note 50"],
+    "lcdPartNumber": "RMX3834 Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Infinix",
+    "model": "Smart 8",
+    "modelCode": "X6525",
+    "aliases": ["Infinix Smart 8"],
+    "lcdPartNumber": "X6525 LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Infinix",
+    "model": "Smart 10",
+    "modelCode": "X6725",
+    "aliases": ["Infinix Smart 10", "X6725B"],
+    "lcdPartNumber": "X6725 LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Infinix",
+    "model": "Hot 30i",
+    "modelCode": "X6831B",
+    "aliases": ["Infinix Hot 30i", "X6831"],
+    "lcdPartNumber": "X6831B LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Poco",
+    "model": "C65",
+    "modelCode": "23028RN54G",
+    "aliases": ["Poco C65", "Redmi 13C"],
+    "lcdPartNumber": "23028RN54G Incell LCD Assembly w/ Frame"
+  },
+  {
+    "brand": "Honor",
+    "model": "X6a",
+    "modelCode": "VNE-LX1",
+    "aliases": ["Honor X6a"],
+    "lcdPartNumber": "VNE-LX1 LCD Assembly w/ Frame"
+  }
+]

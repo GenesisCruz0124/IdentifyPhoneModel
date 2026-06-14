@@ -1,0 +1,122 @@
+[
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A05",
+    "modelCode": "SM-A055F",
+    "aliases": ["SM-A055F/DSN", "SM-A055M", "Galaxy A05"],
+    "batteryModel": "EB-BA055ABY",
+    "batteryPartNumber": "EB-BA055ABY (5000mAh)"
+  },
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A05s",
+    "modelCode": "SM-A057F",
+    "aliases": ["SM-A057M", "SM-A057F/DSN", "Galaxy A05s"],
+    "batteryModel": "EB-BA057ABY",
+    "batteryPartNumber": "EB-BA057ABY (5000mAh)"
+  },
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A14",
+    "modelCode": "SM-A145F",
+    "aliases": ["SM-A145M", "SM-A145P", "SM-A145R", "Galaxy A14"],
+    "batteryModel": "EB-BA145ABY",
+    "batteryPartNumber": "EB-BA145ABY (5000mAh)"
+  },
+  {
+    "brand": "Samsung",
+    "model": "Galaxy A15",
+    "modelCode": "SM-A155F",
+    "aliases": ["SM-A155M", "SM-A155F/DSN", "Galaxy A15"],
+    "batteryModel": "EB-BA155ABY",
+    "batteryPartNumber": "EB-BA155ABY (5000mAh)"
+  },
+  {
+    "brand": "Oppo",
+    "model": "A18",
+    "modelCode": "CPH2565",
+    "aliases": ["Oppo A18"],
+    "batteryModel": "BLP913",
+    "batteryPartNumber": "BLP913 (5000mAh)"
+  },
+  {
+    "brand": "Oppo",
+    "model": "A38",
+    "modelCode": "CPH2579",
+    "aliases": ["Oppo A38"],
+    "batteryModel": "BLP913",
+    "batteryPartNumber": "BLP913 (5000mAh)"
+  },
+  {
+    "brand": "Vivo",
+    "model": "Y17s",
+    "modelCode": "V2310",
+    "aliases": ["Vivo Y17s"],
+    "batteryModel": "B-K2",
+    "batteryPartNumber": "B-K2 (5000mAh)"
+  },
+  {
+    "brand": "Vivo",
+    "model": "Y02s",
+    "modelCode": "V2218",
+    "aliases": ["Vivo Y02s"],
+    "batteryModel": "B-N1",
+    "batteryPartNumber": "B-N1 (5000mAh)"
+  },
+  {
+    "brand": "Realme",
+    "model": "C53",
+    "modelCode": "RMX3760",
+    "aliases": ["Realme C53"],
+    "batteryModel": "BLP905",
+    "batteryPartNumber": "BLP905 (5000mAh)"
+  },
+  {
+    "brand": "Realme",
+    "model": "Note 50",
+    "modelCode": "RMX3834",
+    "aliases": ["Realme Note 50"],
+    "batteryModel": "BLP913",
+    "batteryPartNumber": "BLP913 (5000mAh)"
+  },
+  {
+    "brand": "Infinix",
+    "model": "Smart 8",
+    "modelCode": "X6525",
+    "aliases": ["Infinix Smart 8"],
+    "batteryModel": "BL-47TY",
+    "batteryPartNumber": "BL-47TY (5000mAh)"
+  },
+  {
+    "brand": "Infinix",
+    "model": "Smart 10",
+    "modelCode": "X6725",
+    "aliases": ["Infinix Smart 10", "X6725B"],
+    "batteryModel": "BL-49NX",
+    "batteryPartNumber": "BL-49NX (5000mAh)"
+  },
+  {
+    "brand": "Infinix",
+    "model": "Hot 30i",
+    "modelCode": "X6831B",
+    "aliases": ["Infinix Hot 30i", "X6831"],
+    "batteryModel": "BL-5009A",
+    "batteryPartNumber": "BL-5009A (5000mAh)"
+  },
+  {
+    "brand": "Poco",
+    "model": "C65",
+    "modelCode": "23028RN54G",
+    "aliases": ["Poco C65", "Redmi 13C"],
+    "batteryModel": "BN5G",
+    "batteryPartNumber": "BN5G (5000mAh)"
+  },
+  {
+    "brand": "Honor",
+    "model": "X6a",
+    "modelCode": "VNE-LX1",
+    "aliases": ["Honor X6a"],
+    "batteryModel": "HB527097ECW",
+    "batteryPartNumber": "HB527097ECW (5000mAh)"
+  }
+]

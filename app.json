@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "PhoneID PH",
+    "slug": "phoneid-ph",
+    "scheme": "phoneidph",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.phoneidph.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "PhoneID PH uses the camera to photograph phones, motherboards, and battery labels for model identification."
+      }
+    },
+    "android": {
+      "package": "com.phoneidph.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "PhoneID PH uses the camera to photograph phones, motherboards, and battery labels for model identification."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "PhoneID PH uses your photo library to select photos of phones for model identification."
+        }
+      ],
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
