@@ -2,7 +2,7 @@ import type { IdentificationResult } from '@/src/types';
 
 const MODEL = 'gemini-2.5-flash';
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
-const MAX_OUTPUT_TOKENS = 1024;
+const MAX_OUTPUT_TOKENS = 2048;
 
 export type IdentificationErrorCode = 'no_api_key' | 'network' | 'api_error' | 'parse_error';
 
@@ -53,7 +53,11 @@ function parseIdentificationResult(raw: string): IdentificationResult {
   try {
     parsed = JSON.parse(stripCodeFences(raw));
   } catch {
-    throw new IdentificationError('parse_error', 'The identification response was not valid JSON.');
+    const snippet = raw.trim().slice(0, 200);
+    throw new IdentificationError(
+      'parse_error',
+      `The identification response was not valid JSON.${snippet ? ` Response started with: "${snippet}"` : ' Response was empty.'}`
+    );
   }
 
   if (typeof parsed !== 'object' || parsed === null) {
@@ -121,6 +125,9 @@ export async function identifyPhone(
         generationConfig: {
           maxOutputTokens: MAX_OUTPUT_TOKENS,
           responseMimeType: 'application/json',
+          thinkingConfig: {
+            thinkingBudget: 0,
+          },
         },
       }),
     });
