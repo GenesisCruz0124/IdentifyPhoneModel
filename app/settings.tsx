@@ -27,7 +27,7 @@ export default function SettingsScreen() {
   const handleSave = async () => {
     const trimmed = apiKey.trim();
     if (!trimmed) {
-      Alert.alert('Missing key', 'Paste your Anthropic API key first.');
+      Alert.alert('Missing key', 'Paste your Gemini API key first.');
       return;
     }
     setSaving(true);
@@ -59,13 +59,13 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.flex}>
         <ScrollView contentContainerStyle={styles.content}>
-          <Text style={styles.label}>Anthropic API Key</Text>
+          <Text style={styles.label}>Google Gemini API Key</Text>
           <View style={styles.inputRow}>
             <TextInput
               style={styles.input}
               value={apiKey}
               onChangeText={setApiKeyInput}
-              placeholder="sk-ant-..."
+              placeholder="AIzaSy..."
               placeholderTextColor={colors.textMuted}
               autoCapitalize="none"
               autoCorrect={false}
@@ -81,7 +81,7 @@ export default function SettingsScreen() {
             <Ionicons name="lock-closed-outline" size={18} color={colors.textMuted} />
             <Text style={styles.noticeText}>
               Your API key is stored locally on this device using encrypted secure storage. It is sent only
-              directly to Anthropic's API when identifying a phone, never to any other server.
+              directly to Google's Gemini API when identifying a phone, never to any other server.
             </Text>
           </View>
 
@@ -106,8 +106,9 @@ export default function SettingsScreen() {
           <View style={styles.helpBox}>
             <Text style={styles.helpTitle}>Where do I get an API key?</Text>
             <Text style={styles.helpText}>
-              Create a key from the Anthropic Console (console.anthropic.com) under "API Keys", then paste it
-              above. Usage is billed by Anthropic based on the number of images you identify.
+              Create a free key at Google AI Studio (aistudio.google.com/apikey) with your Google account, then
+              paste it above. The Gemini free tier has no cost — it just has a daily request limit, which is
+              more than enough for everyday phone identification.
             </Text>
           </View>
         </ScrollView>

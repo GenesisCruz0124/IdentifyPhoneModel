@@ -42,7 +42,7 @@ export default function ResultScreen() {
     try {
       const apiKey = await getApiKey();
       if (!apiKey) {
-        throw new IdentificationError('no_api_key', 'No Anthropic API key is set. Add one in Settings.');
+        throw new IdentificationError('no_api_key', 'No Gemini API key is set. Add one in Settings.');
       }
       const identification = await identifyPhone(capturedImage.base64, capturedImage.mimeType, apiKey);
       setResult(identification);

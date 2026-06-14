@@ -8,7 +8,7 @@ export interface IdentificationSpecs {
   year: string;
 }
 
-/** Shape returned by the Anthropic Messages API for a phone identification request. */
+/** Shape returned by the Gemini API for a phone identification request. */
 export interface IdentificationResult {
   brand: string;
   model: string;

@@ -1,8 +1,8 @@
 # PhoneID PH
 
 An Android app for cellphone technicians in the Philippines. Take a photo of a
-phone's back panel, motherboard, or battery label, and PhoneID PH uses Claude
-(Anthropic's Messages API) to identify the brand, model, and model code — then
+phone's back panel, motherboard, or battery label, and PhoneID PH uses Google's
+Gemini API (free tier) to identify the brand, model, and model code — then
 looks up the matching LCD and battery part numbers and gives you one-tap
 searches on Shopee and Lazada.
 
@@ -11,7 +11,7 @@ searches on Shopee and Lazada.
 - [Expo](https://expo.dev) (React Native + TypeScript)
 - [expo-router](https://docs.expo.dev/router/introduction/) for file-based navigation
 - `expo-camera` + `expo-image-picker` for capturing/uploading photos
-- `expo-secure-store` for storing the Anthropic API key on-device
+- `expo-secure-store` for storing the Gemini API key on-device
 - [EAS Build](https://docs.expo.dev/build/introduction/) for producing an installable APK
 
 ## How it works
@@ -22,8 +22,8 @@ searches on Shopee and Lazada.
    - **Motherboard** — capture/upload the board. Supplementary signal: silkscreen
      text + chip markings.
    - **Battery label** — capture/upload the battery sticker. Most reliable signal.
-2. The photo is sent (as base64) to the Anthropic Messages API
-   (`claude-sonnet-4-6`). The model is instructed to **read printed text first**
+2. The photo is sent (as base64) to the Google Gemini API
+   (`gemini-2.5-flash`, free tier). The model is instructed to **read printed text first**
    (regulatory codes, battery codes, board silkscreen) before falling back to
    visual reasoning, and to return strict JSON:
    ```json
@@ -48,7 +48,7 @@ searches on Shopee and Lazada.
 - npm
 - An Android device with [Expo Go](https://expo.dev/go), or an Android
   emulator, for local development
-- An [Anthropic API key](https://console.anthropic.com/) (for identification)
+- A free [Google Gemini API key](https://aistudio.google.com/apikey) (for identification)
 - An [Expo account](https://expo.dev/signup) (for EAS builds)
 
 ### Install and run
@@ -66,13 +66,17 @@ emulator.
 > `expo-camera` permissions behave oddly in Expo Go, build a dev client with
 > `eas build --profile development -p android`.
 
-## Adding your Anthropic API key
+## Adding your Gemini API key
 
-1. Open the app and tap the **settings (gear) icon** on the Home screen.
-2. Paste your API key (starts with `sk-ant-...`) and tap **Save API Key**.
-3. The key is stored locally on-device using `expo-secure-store` (encrypted
-   keystore on Android). It is sent only directly to `api.anthropic.com` when
-   identifying a photo — never to any other server.
+1. Go to [Google AI Studio](https://aistudio.google.com/apikey) and create a
+   free API key with your Google account (no billing required for the free
+   tier).
+2. Open the app and tap the **settings (gear) icon** on the Home screen.
+3. Paste your API key (starts with `AIzaSy...`) and tap **Save API Key**.
+4. The key is stored locally on-device using `expo-secure-store` (encrypted
+   keystore on Android). It is sent only directly to
+   `generativelanguage.googleapis.com` when identifying a photo — never to
+   any other server.
 
 You can remove the saved key at any time from the same screen.
 
@@ -111,7 +115,7 @@ Both files are arrays of simple objects. To add a new phone, add an entry to
 
 ### Matching logic
 
-`src/services/partsLookup.ts` matches Claude's identification result
+`src/services/partsLookup.ts` matches Gemini's identification result
 (`modelCode`, `model`, `brand`) against each entry's `modelCode`, `model`, and
 `aliases`, ignoring case, spaces, hyphens, underscores, and slashes. Add as
 many `aliases` as you like to catch regional variants (e.g.
@@ -136,7 +140,7 @@ src/
   components/         Reusable UI components
   constants/           Theme + capture mode copy
   services/
-    identify.ts       Anthropic Messages API client
+    identify.ts       Gemini API client
     partsLookup.ts     models.json / batteries.json matching
     apiKeyStore.ts     SecureStore wrapper for the API key
   state/

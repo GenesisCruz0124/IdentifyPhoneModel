@@ -1,9 +1,8 @@
 import type { IdentificationResult } from '@/src/types';
 
-const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
-const ANTHROPIC_VERSION = '2023-06-01';
-const MODEL = 'claude-sonnet-4-6';
-const MAX_TOKENS = 1024;
+const MODEL = 'gemini-2.5-flash';
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
+const MAX_OUTPUT_TOKENS = 1024;
 
 export type IdentificationErrorCode = 'no_api_key' | 'network' | 'api_error' | 'parse_error';
 
@@ -79,8 +78,8 @@ function parseIdentificationResult(raw: string): IdentificationResult {
 }
 
 /**
- * Sends a base64-encoded photo to the Anthropic Messages API and returns a
- * structured phone identification result.
+ * Sends a base64-encoded photo to the Google Gemini API (free tier) and
+ * returns a structured phone identification result.
  */
 export async function identifyPhone(
   base64: string,
@@ -88,46 +87,46 @@ export async function identifyPhone(
   apiKey: string
 ): Promise<IdentificationResult> {
   if (!apiKey) {
-    throw new IdentificationError('no_api_key', 'No Anthropic API key is set. Add one in Settings.');
+    throw new IdentificationError('no_api_key', 'No Gemini API key is set. Add one in Settings.');
   }
 
   let response: Response;
   try {
-    response = await fetch(ANTHROPIC_API_URL, {
+    response = await fetch(GEMINI_API_URL, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': ANTHROPIC_VERSION,
+        'x-goog-api-key': apiKey,
       },
       body: JSON.stringify({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        system: SYSTEM_PROMPT,
-        messages: [
+        systemInstruction: {
+          parts: [{ text: SYSTEM_PROMPT }],
+        },
+        contents: [
           {
             role: 'user',
-            content: [
+            parts: [
               {
-                type: 'image',
-                source: {
-                  type: 'base64',
-                  media_type: mimeType,
+                inline_data: {
+                  mime_type: mimeType,
                   data: base64,
                 },
               },
               {
-                type: 'text',
                 text: 'Identify this phone following the system instructions.',
               },
             ],
           },
         ],
+        generationConfig: {
+          maxOutputTokens: MAX_OUTPUT_TOKENS,
+          responseMimeType: 'application/json',
+        },
       }),
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown network error';
-    throw new IdentificationError('network', `Could not reach the Anthropic API: ${message}`);
+    throw new IdentificationError('network', `Could not reach the Gemini API: ${message}`);
   }
 
   if (!response.ok) {
@@ -138,26 +137,26 @@ export async function identifyPhone(
     } catch {
       // ignore body parse failures, fall back to status text
     }
-    if (response.status === 401) {
-      throw new IdentificationError('api_error', 'The Anthropic API key was rejected. Check it in Settings.');
+    if (response.status === 400 && /api key/i.test(detail)) {
+      throw new IdentificationError('api_error', 'The Gemini API key was rejected. Check it in Settings.');
     }
     throw new IdentificationError(
       'api_error',
-      `Anthropic API error (${response.status}): ${detail || response.statusText}`
+      `Gemini API error (${response.status}): ${detail || response.statusText}`
     );
   }
 
-  let data: { content?: Array<{ type: string; text?: string }> };
+  let data: { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
   try {
     data = await response.json();
   } catch {
-    throw new IdentificationError('parse_error', 'The Anthropic API returned an unreadable response.');
+    throw new IdentificationError('parse_error', 'The Gemini API returned an unreadable response.');
   }
 
-  const textBlock = data.content?.find((block) => block.type === 'text');
-  if (!textBlock?.text) {
-    throw new IdentificationError('parse_error', 'The Anthropic API response did not contain any text.');
+  const textPart = data.candidates?.[0]?.content?.parts?.find((part) => part.text);
+  if (!textPart?.text) {
+    throw new IdentificationError('parse_error', 'The Gemini API response did not contain any text.');
   }
 
-  return parseIdentificationResult(textBlock.text);
+  return parseIdentificationResult(textPart.text);
 }
